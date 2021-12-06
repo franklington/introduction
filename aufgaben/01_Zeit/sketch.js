@@ -34,14 +34,14 @@ function draw() {
   //draw helping text 
   textSize(20);
   textAlign(CENTER);
-  text(d.getHours() + "h " + d.getMinutes() + "'' "+ d.getSeconds() + "'" , 0, 350);
+  text(d.getHours() + "h " + d.getMinutes() + "'' " + d.getSeconds() + "'", 0, 350);
 
   //draw lines 
   noFill();
   stroke(180);
   strokeWeight(1);
 
-  for(var i = 0; i < 4; i++){
+  for (var i = 0; i < 4; i++) {
     let diameter = biggestCircle - (gapBetween * i);
     circle(0, 0, diameter);
   }
@@ -50,15 +50,15 @@ function draw() {
   rotate(radians(-90));
 
   // draw each point
-  for(var i = 0; i < 4; i++){
+  for (var i = 0; i < 4; i++) {
 
-    let offset = (biggestCircle/2) - ((gapBetween/2)*i)
-    let posX = offset * cos(radians(time[i])); 
-    let posY = offset * sin(radians(time[i])); 
+    let offset = (biggestCircle / 2) - ((gapBetween / 2) * i)
+    let posX = offset * cos(radians(time[i]));
+    let posY = offset * sin(radians(time[i]));
 
     noStroke();
     fill(0)
-    circle(posX, posY, 10*(Math.abs(i-4)));
+    circle(posX, posY, 10 * (Math.abs(i - 4)));
   }
 }
 

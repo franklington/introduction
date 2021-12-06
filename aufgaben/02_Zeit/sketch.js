@@ -13,7 +13,7 @@ void setup() {
 
 void draw() {
   deform.set("time", millis() / 1000.0);
-  deform.set("mouse", f loat(mouseX), float(mouseY));
+  deform.set("mouse", float(mouseX), float(mouseY));
   shader(deform);
   image(tex, 0, 0, width, height);
 }
