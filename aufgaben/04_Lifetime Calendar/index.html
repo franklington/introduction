@@ -1,0 +1,97 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+    <!-- die p5 bibliothek -->
+  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="menu.js"></script>
+  <title>UFOS</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛸</text></svg>">
+  <!-- einbinden weiterer bibliothek -->
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+
+  <!-- reset von vordefinierten styles, abstände löschen  -->
+  <style> 
+  
+  body {
+    background-color: black;
+    padding: 0; 
+    margin: 0;
+    font-family: sans-serif;
+    color: rgb(36, 36, 36);
+  } 
+  menu{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(248, 248, 248, 0.548);
+    border: 1px solid rgb(73, 73, 73);
+    margin: 20px;
+    padding: 10px 60px 40px 40px;
+  }
+  [type="checkbox"]{
+    background-color:transparent;
+    line-height: 2;
+    font-size: 16px;
+    -webkit-appearance: none;
+    border: 1px solid rgb(49, 49, 49);
+    border-radius: 99px;
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+  }
+  [type="checkbox"]:checked{
+    background-color: #0f0;
+  }
+  .control *{
+    display: inline-block;
+    vertical-align:middle;
+    margin-left:5px;
+  }
+  .f-col{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+  }
+  h1,h2{
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-weight: normal;
+  }
+  h1{
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  h2{
+    font-size: 16px;
+    /*text-transform: uppercase;*/
+  }
+  label{
+    margin-bottom:3px;
+  }
+  .control{
+    margin-top:2px;
+    margin-bottom: 2px;
+  }
+  .d-none{
+    display: none;
+  }
+
+
+
+  
+  
+  </style>
+</head>
+
+<body>
+  <menu>
+    <h1>A BLOCK A WEEK</h1>
+    <div id="types" class="f-col">
+      <h2>Choose:</h2>
+    </div>
+  </menu>
+</body>
+</html>
