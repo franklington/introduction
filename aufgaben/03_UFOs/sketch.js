@@ -5,6 +5,8 @@ let data;
 let radius = 400;
 let ufoTypes;
 let menu;
+let minDuration;
+let maxDuration;
 
 
 
@@ -24,9 +26,18 @@ function setup() {
   menu ={
     autoRotate: new Checkbox("autorotate", "auto rotate", true, "#0ff00", "#settings"),
     showEarth: new Checkbox("showearth", "show earth (experimental)", false, "#0ff00", "#settings"),
+    showDuration: new Checkbox("duration", "scale based on duration", false, "#0ff00", "#filters"),
 
   };
  
+  let durations = data.getColumn("duration (seconds)");
+
+  let durationsNumbers = durations.filter(Number);
+  minDuration = parseInt(min(durationsNumbers));
+  maxDuration = parseInt(max(durationsNumbers));
+  console.log(maxDuration);
+  console.log(minDuration);
+
   let rows = data.getRowCount();
 
   ufoTypes = {
@@ -56,7 +67,7 @@ function setup() {
     var y = radius * sin(lon) * sin(lat);
     var z = radius * cos(lon);
 
-    ufo = new UFOSight(x,y,z,type,duration,city);
+    ufo = new UFOSight(x,y,z,type,parseInt(duration),city);
 
     switch(type){
       case "cylinder": 
@@ -115,12 +126,19 @@ function draw() {
       let ufos = typeItem.ufoList;
       let color = typeItem.color;
       let type = typeItem.type;
+     
+
       fill(color);
       noStroke();
       for (var r = 0; r < ufos.length; r++) {
         push();
         translate(ufos[r].x, ufos[r].y, ufos[r].z)
-        sphere(3);
+        let size = 3;
+        if(menu.showDuration.value){
+          size = map(ufos[r].duration, minDuration, 3600 ,3 ,8 ,true);
+          //console.log(size);
+        }
+        sphere(size);
         pop();
       }
 
