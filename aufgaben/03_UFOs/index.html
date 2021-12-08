@@ -1,0 +1,107 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+    <!-- die p5 bibliothek -->
+  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="menu.js"></script>
+
+  <!-- einbinden weiterer bibliothek -->
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+
+  <!-- reset von vordefinierten styles, abstände löschen  -->
+  <style> 
+  
+  body {
+    background-color: black;
+    padding: 0; 
+    margin: 0;
+    font-family: monospace;
+    color: #0f0;
+  } 
+  menu{
+    position:absolute;
+    background-color: rgba(0, 0, 0, 0.445);
+    border: 1px solid #0f0;
+    margin: 20px;
+    padding: 10px 60px 40px 40px;
+  }
+  [type="checkbox"]{
+    background-color:transparent;
+    line-height: 2;
+    font-size: 16px;
+    -webkit-appearance: none;
+    border: 1px solid #0f0;
+    border-radius: 99px;
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+  }
+  [type="checkbox"]:checked{
+    background-color: #0f0;
+  }
+  .control *{
+    display: inline-block;
+    vertical-align:middle;
+    margin-left:5px;
+  }
+  .f-col{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+  }
+  h1,h2{
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-weight: normal;
+  }
+  h1{
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  h2{
+    font-size: 16px;
+    /*text-transform: uppercase;*/
+  }
+  label{
+    margin-bottom:3px;
+  }
+  .control{
+    margin-top:2px;
+    margin-bottom: 2px;
+  }
+  .d-none{
+    display: none;
+  }
+
+
+
+  
+  
+  </style>
+</head>
+
+<body>
+  <menu>
+    <h1>UFO SPOTTINGS 🛸</h1>
+    <div id="types" class="f-col">
+      <h2>Show types</h2>
+    </div>
+    <div id="filters" class="f-col d-none">
+      <h2>Filter by </h2>
+      <div id="types-container"></div>
+      <div class="control">
+        <input type="range" name="light" id="light"><label>Rotating</label>
+      </div>
+
+    </div>
+    <div id="settings-contaier" class="f-col">
+      <h2>Settings </h2>
+      <div id="settings"></div>
+
+    </div>
+  </menu>
+</body>
+</html>
