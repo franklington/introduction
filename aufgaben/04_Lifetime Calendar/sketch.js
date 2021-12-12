@@ -64,21 +64,32 @@ function draw() {
   let averageLifespan = statistics[selectedCountry][selectedSex];
   let boxes = parseInt(averageLifespan * 52.1786);
   let agedBoxes = parseInt(age * 52.1786);
+  
   let boxCount = 0;
   let padding = 50;
+  let spacing = 2;
   let size = 12; 
-  let step = size+2;
+  let step = size+spacing;
+  let calcBoxSize = parseInt(sqrt((windowHeight-(2*padding))*(windowWidth-(2*padding)))/100);
+  console.log(calcBoxSize);
+  size = calcBoxSize;
+ step = size+spacing;
 
   stroke(0);
-  fill(237, 24, 70);
   for(var y = 0+padding; y+padding < windowHeight; y+= step){
     for(var x = 0+padding; x+padding < windowWidth; x+= step){
       if(boxCount >= boxes){
         break;
       }
+      //current age
       if(boxCount >= agedBoxes){
         noFill();
       }
+      // 18 
+      else{
+        fill(255, 24, 70);
+      }
+
       rect(x,y,size,size);
       boxCount++;
     }

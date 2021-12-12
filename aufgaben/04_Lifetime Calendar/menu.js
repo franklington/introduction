@@ -154,7 +154,7 @@ class Input{
       let template = `
       <label for="${this.name}">${this.label}</label>
       <input type="number" id="${this.name}" name="${this.name}"
-       min="10" max="100" value="${this.defaultValue}">
+       min="0" max="120" value="${this.defaultValue}">
       `;
 
       return template;
