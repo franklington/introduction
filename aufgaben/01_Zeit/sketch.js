@@ -9,12 +9,15 @@ function setup() {
 function draw() {
 
   const d = new Date();
+  let now = clock();
+
+  background('black');
 
   //Time in degrees with 2 floats
   let millis = map(d.getMilliseconds(), 0, 1000, 0.00, 360.00);
-  let second = map((d.getSeconds() * Math.pow(10, 3) + d.getMilliseconds()), 0, 60000, 0.00, 360.00);
-  let minute = map((d.getMinutes() * 60 + d.getSeconds()), 0, 3600, 0.00, 360.00);
-  let hour = map((((d.getHours() % 12) || 12) * 60 + d.getMinutes()), 0, 720, 0.00, 360.00);;
+  let second = map((now.sec * Math.pow(10, 3) + d.getMilliseconds()), 0, 60000, 0.00, 360.00);
+  let minute = map((now.min* 60 + now.sec), 0, 3600, 0.00, 360.00);
+  let hour = map((((now.hours % 12) || 12) * 60 + now.min), 0, 720, 0.00, 360.00);;
 
   //Circles and runcycles
   let biggestCircle = 550;
@@ -34,7 +37,7 @@ function draw() {
   //draw helping text 
   textSize(20);
   textAlign(CENTER);
-  text(d.getHours() + "h " + d.getMinutes() + "'' " + d.getSeconds() + "'", 0, 350);
+  text(now.hours + "h " + now.min + "'' " + now.sec + "'", 0, 350);
 
   //draw lines 
   noFill();
