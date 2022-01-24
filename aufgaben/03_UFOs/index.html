@@ -12,13 +12,21 @@
 
   <!-- reset von vordefinierten styles, abstände löschen  -->
   <style> 
+
+@font-face {
+  font-family: "VT323";
+  src: url('fonts/VT323-Regular.ttf');
+}
+
   
   body {
     background-color: black;
     padding: 0; 
     margin: 0;
-    font-family: monospace;
+    font-family: "VT323", monospace;
     color: #0f0;
+    font-size: 24px;
+
   } 
   menu{
     position:absolute;
@@ -30,7 +38,7 @@
   [type="checkbox"]{
     background-color:transparent;
     line-height: 2;
-    font-size: 16px;
+    font-size: 1rem;
     -webkit-appearance: none;
     border: 1px solid #0f0;
     border-radius: 99px;
@@ -59,14 +67,15 @@
   }
   h1{
     margin-bottom: 10px;
-    font-size: 24px;
+    font-size: 1.3rem;
   }
   
   h2{
-    font-size: 16px;
+    font-size: 1rem;
     /*text-transform: uppercase;*/
   }
   label{
+    font-size: 1rem;
     margin-bottom:3px;
   }
   .control{

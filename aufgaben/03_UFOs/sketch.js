@@ -15,14 +15,20 @@ let maxDuration;
 
 function preload() {
   img = loadImage('dnb_land_ocean_ice.2012.3600x1800.jpg');
+  //Lade die Tabelle
   data = loadTable("../../datasets/02_UFO_sightings_selection.csv", 'ssv', 'header');
-
+  myFont = loadFont('fonts/VT323-Regular.ttf');
 }
 
 
 
 function setup() {
+  //Stelle die Ansicht auf 3D um
   createCanvas(windowWidth, windowHeight, WEBGL);
+
+  //Erstelle das Menü 
+  //p5js intern nicht möglich weil 3D 
+  //deshalb kleiner Render
   menu ={
     autoRotate: new Checkbox("autorotate", "auto rotate", true, "#0ff00", "#settings"),
     showEarth: new Checkbox("showearth", "show earth (experimental)", false, "#0ff00", "#settings"),
@@ -132,23 +138,25 @@ function draw() {
       noStroke();
       for (var r = 0; r < ufos.length; r++) {
         push();
+      
         translate(ufos[r].x, ufos[r].y, ufos[r].z)
+       
         let size = 3;
         if(menu.showDuration.value){
           size = map(ufos[r].duration, minDuration, 3600 ,3 ,8 ,true);
           //console.log(size);
         }
         sphere(size);
+        //rotateY();
+        textFont(myFont);
+        textSize(5);
+        textAlign(CENTER, RIGHT)
+        text(ufos[r].city, 0, 0);
         pop();
       }
 
     }
-
- 
-
   }
-  
-
 
 }
 
@@ -209,6 +217,7 @@ class UFOType{
   label;
   color;
   isShow;
+
   constructor(ufotype, color, label, isshow = true){
     this.ufoType = ufotype;
     this.color = color; 
