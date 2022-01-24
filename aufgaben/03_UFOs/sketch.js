@@ -33,6 +33,7 @@ function setup() {
     autoRotate: new Checkbox("autorotate", "auto rotate", true, "#0ff00", "#settings"),
     showEarth: new Checkbox("showearth", "show earth (experimental)", false, "#0ff00", "#settings"),
     showDuration: new Checkbox("duration", "scale based on duration", false, "#0ff00", "#filters"),
+    showLabels: new Checkbox("label", "show label", false, "#0ff00", "#filters"),
 
   };
  
@@ -148,10 +149,16 @@ function draw() {
         }
         sphere(size);
         //rotateY();
-        textFont(myFont);
-        textSize(5);
-        textAlign(CENTER, RIGHT)
-        text(ufos[r].city, 0, 0);
+
+        if(menu.showLabels.value){
+          
+          translate(5, 5, 5);
+          textFont(myFont);
+          textSize(5);
+          textAlign(CENTER, RIGHT)
+          text(ufos[r].city, 0, 0);
+        }
+       
         pop();
       }
 
