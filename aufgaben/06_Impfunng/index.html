@@ -76,14 +76,21 @@
         <script>
 
         var controller = new ScrollMagic.Controller();
+
         let scenePin = new ScrollMagic.Scene({
             offset:0,
             duration:1000
-        }).setPin('#sc_1').addTo(controller);
+        }).setPin('#sc_1',{
+            pushFollowers:false
+        }).addTo(controller);
+
         let scenePin2 = new ScrollMagic.Scene({
-            offset:0,
-            duration:2000
-        }).setPin('#sc_2').addTo(controller);
+            offset:1000,
+            duration:2000,
+           
+        }).setPin('#sc_2',{
+            pushFollowers:false
+        }).addTo(controller);
     
         //controller.add(sceneClass);
         //controller.add(scenePin);
