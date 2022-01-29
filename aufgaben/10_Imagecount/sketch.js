@@ -94,10 +94,12 @@ function createArtboard(svg = false){
   buffer.push();
   buffer.fill(markerColor);
   buffer.noStroke();
-  detections.forEach(item => {
-    buffer.ellipse(item.x, item.y, 10);
-  });
   buffer.textSize(20);
+  detections.forEach(item => {
+    buffer.text("x", item.x, item.y);
+    //buffer.ellipse(item.x, item.y, 10);
+  });
+  
   buffer.text(fileSelect.selectedLabel +" | "+ fileName +" | "+ detections.length, 20,20);
   buffer.noFill();
   buffer.stroke(markerColor);
@@ -110,10 +112,15 @@ function createArtboard(svg = false){
 function exSVG(){
   
   let file = prompt("Please enter your category", fileName);
+  fileName = file;
   if(file == null)
     return;
   let pgr = createArtboard(true);
-  pgr.save( fileSelect.selectedLabel +"_"+ file+".svg");
+  var fname = fileSelect.selectedLabel +"_"+ file
+  pgr.save( fname +".svg");
+  download_csv(detections, fname);
+
+
 
 }
 
@@ -173,4 +180,26 @@ function imgLoad(){
 function changeColor(){
   markerColor = colorInput.value;
   renderArtboard();
+}
+
+var data = [
+  ['Foo', 'programmer'],
+  ['Bar', 'bus driver'],
+  ['Moo', 'Reindeer Hunter']
+];
+
+
+function download_csv(data,name) {
+   var csv = 'X,Y\n';
+   data.forEach(function(row) {
+           csv += row.x +","+ row.y;
+           csv += "\n";
+   });
+
+   console.log(csv);
+   var hiddenElement = document.createElement('a');
+   hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+   hiddenElement.target = '_blank';
+   hiddenElement.download = name+'.csv';
+   hiddenElement.click();
 }
