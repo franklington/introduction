@@ -156,6 +156,7 @@ function createMenu(){
 }
 function fileChanged(){
   filePathForDrawing = fileSelect.value;
+  resetDetections();
   imgLoad();
 }
 
