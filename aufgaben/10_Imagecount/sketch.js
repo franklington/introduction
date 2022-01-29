@@ -107,7 +107,7 @@ function exSVG(){
   pgr.textSize(20);
   pgr.text(fileName +" "+ detections.length, 20,20);
   pgr.pop();
-  pgr.save(file+" "+detections.length+".svg");
+  pgr.save(filePathForDrawing+" "+file+" "+detections.length+".svg");
 }
 
 let saveBtn, 
