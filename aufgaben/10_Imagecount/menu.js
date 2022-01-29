@@ -69,14 +69,24 @@ class Checkbox{
      id;
      options;
      value;
+     selectedLabel;
 
-     constructor(id, label, sBOptions, name, parent = "body",value){
+     constructor(id, label, sBOptions, name, parent = "body", value){
         this.id = id;
         this.label = label;
         this.name = name;
         this.options = sBOptions;
         this.value = value;
+
+        sBOptions.forEach(option => {
+           if(option.selected){
+              this.value = option.value;
+              this.selectedLabel = option.label;
+           }
+        });
+
         this.parent = parent;
+        
         this.render();
         
      }
@@ -101,13 +111,14 @@ class Checkbox{
      }
      change = e =>{
         this.value = e.currentTarget.value;
-        console.log(this.value);
+        this.selectedLabel = this.elem.options[ this.elem.selectedIndex].innerHTML;
+        console.log(this.selectedLabel);
      }
 
      selectNext = () =>{
        this.elem.selectedIndex++; // will select Grapes
-       console.log(this.elem.value);
-       this.value =  this.elem.value;
+      this.selectedLabel = this.elem.options[ this.elem.selectedIndex].innerHTML;
+      this.value =  this.elem.value;
        return this.value;
     
      }

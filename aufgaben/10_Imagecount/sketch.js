@@ -98,7 +98,7 @@ function createArtboard(svg = false){
     buffer.ellipse(item.x, item.y, 10);
   });
   buffer.textSize(20);
-  buffer.text(fileName +" "+ detections.length, 20,20);
+  buffer.text(fileSelect.selectedLabel +" | "+ fileName +" | "+ detections.length, 20,20);
   buffer.noFill();
   buffer.stroke(markerColor);
   buffer.rect(0,0,img.width/imgResizeDivider, img.height/imgResizeDivider);
@@ -109,11 +109,11 @@ function createArtboard(svg = false){
 
 function exSVG(){
   
-  let file = prompt("Please enter your filename", fileName);
+  let file = prompt("Please enter your category", fileName);
   if(file == null)
     return;
   let pgr = createArtboard(true);
-  pgr.save(filePathForDrawing+" "+file+" "+detections.length+".svg");
+  pgr.save( fileSelect.selectedLabel +"_"+ fileName+".svg");
 
 }
 
@@ -150,7 +150,7 @@ function createMenu(){
   colorInput.bindOnChange(changeColor);
 
 
-  labelInput = new Input("filename", "Set filename:", "filename", fileName, "text", "#container", fileName);
+  labelInput = new Input("filename", "Set category:", "filename", fileName, "text", "#container", fileName);
   labelInput.bindOnChange(changeFilename);
 
 }
@@ -161,7 +161,8 @@ function fileChanged(){
 
 function changeFilename(){
  fileName = labelInput.value;
- renderArtboard
+
+ renderArtboard();
 }
 
 function imgLoad(){
