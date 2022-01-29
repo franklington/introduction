@@ -113,7 +113,7 @@ function exSVG(){
   if(file == null)
     return;
   let pgr = createArtboard(true);
-  pgr.save( fileSelect.selectedLabel +"_"+ fileName+".svg");
+  pgr.save( fileSelect.selectedLabel +"_"+ file+".svg");
 
 }
 
