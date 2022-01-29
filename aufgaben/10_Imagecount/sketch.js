@@ -99,7 +99,7 @@ function exSVG(){
 
   pgr = createGraphics(width, height, SVG, file);
   pgr.push();
-  pgr.fill(255,0,0);
+  pgr.fill(markerColor);
   pgr.noStroke();
   detections.forEach(item => {
     pgr.ellipse(item.x, item.y, 10);
