@@ -7,18 +7,20 @@ let fileSelect;
 let filePathForDrawing;
 let fileName = "unknown";
 let markerColor = "#ff0000";
+let imgResizeDivider = 5;
 
 function setup() {
   createCanvas(width, height);
   createMenu();
   imgLoad();
-  artboard = createGraphics(width, height);
   detections = new Array(); 
+  artboard = createArtboard();
+  
 }
 
 function draw() {
   clear();
-  image(img, 0, 0,img.width/5, img.height/5);
+  image(img, 0, 0,img.width/imgResizeDivider, img.height/imgResizeDivider);
   image(artboard,0,0);
 }
 
@@ -63,24 +65,14 @@ function mousePressed() {
 }
 
 function mouseReleased() {
-  if(mouseX < img.width/5 && mouseY < img.height/5){
+  if(mouseX < img.width/imgResizeDivider && mouseY < img.height/imgResizeDivider){
     detections.push({x:mouseX, y:mouseY});
   }
   renderArtboard();
 }
 
 function renderArtboard(){
-  artboard.clear();
-  artboard.push();
-  artboard.fill(markerColor);
-  artboard.textSize(20);
-  artboard.text(fileName +" "+ detections.length, 20,20);
-
-  artboard.noStroke();
-  detections.forEach(item => {
-    artboard.ellipse(item.x, item.y, 10);
-  });
-  artboard.pop();
+  artboard = createArtboard();
 }
 function revertDetections(){
   detections.pop();
@@ -91,23 +83,38 @@ function resetDetections(){
   renderArtboard();
 }
 
+function createArtboard(svg = false){
+  let buffer;
+  if(svg){
+    buffer = createGraphics(width, height, SVG);
+  }
+  else{
+    buffer = createGraphics(width, height);
+  }
+  buffer.push();
+  buffer.fill(markerColor);
+  buffer.noStroke();
+  detections.forEach(item => {
+    buffer.ellipse(item.x, item.y, 10);
+  });
+  buffer.textSize(20);
+  buffer.text(fileName +" "+ detections.length, 20,20);
+  buffer.noFill();
+  buffer.stroke(markerColor);
+  buffer.rect(0,0,img.width/imgResizeDivider, img.height/imgResizeDivider);
+  buffer.pop();
+  
+  return buffer;
+}
+
 function exSVG(){
-  let pgr = createGraphics(width, height);
+  
   let file = prompt("Please enter your filename", fileName);
   if(file == null)
     return;
-
-  pgr = createGraphics(width, height, SVG, file);
-  pgr.push();
-  pgr.fill(markerColor);
-  pgr.noStroke();
-  detections.forEach(item => {
-    pgr.ellipse(item.x, item.y, 10);
-  });
-  pgr.textSize(20);
-  pgr.text(fileName +" "+ detections.length, 20,20);
-  pgr.pop();
+  let pgr = createArtboard(true);
   pgr.save(filePathForDrawing+" "+file+" "+detections.length+".svg");
+
 }
 
 let saveBtn, 
