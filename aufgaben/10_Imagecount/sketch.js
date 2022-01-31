@@ -96,6 +96,7 @@ function createArtboard(svg = false){
   buffer.noStroke();
   buffer.textSize(20);
   detections.forEach(item => {
+    buffer.textAlign(CENTER, CENTER);
     buffer.text("x", item.x, item.y);
     //buffer.ellipse(item.x, item.y, 10);
   });
