@@ -72,7 +72,7 @@ let drawHeader = [],
     drawStrasse = [],
     drawFlugzeug = [];
 
-let dataPointsToDraw = 350; 
+let dataPointsToDraw = 0; 
 let fy = _ => map(_, 0, 250, height-200, 40);
 
 function draw() {
@@ -98,16 +98,18 @@ function draw() {
     xPos = 0; 
   }*/
 
-  let leftgap = 800;
+  let leftgap = 880;
 
   background(colorsBackground);
   bufferCanvas.clear();
   drawGraph(bahn, dataPointsToDraw, colorsBahn, "Train", bufferCanvas, f);
   drawGraph(strasse, dataPointsToDraw, colorsStrasse, "Car", bufferCanvas,f);
   drawGraph(flugzeug, dataPointsToDraw, colorsFlugzeug, "Airplane", bufferCanvas,f);
-  image(legendCanvas,0,0,width,height);
-  image(bufferCanvas,0,0,width,height); 
-  /*
+  
+  //Show All
+  //image(legendCanvas,0,0,width,height);
+ // image(bufferCanvas,0,0,width,height); 
+  
   //Start without moving
   if(dataPointsToDraw*xDistance < leftgap){
     image(legendCanvas,0,0,width,height, 0 , 0, width, height);
@@ -130,7 +132,7 @@ function draw() {
     }
 
   }
-*/
+
   /*if(f < 1500){
     save(`vpi_animation_${f}.png`);
   }*/

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <style>
+        body {
+
+            margin: 0;
+            padding: 0;
+            background-color: black;
+
+        
+        }
+
+        scene {
+            display: inline-flex;
+
+            width: 100%;
+            height: 100vh;
+            margin: 0px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            mix-blend-mode: screen;
+
+        }
+
+        .other_bx {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 999px;
+            mix-blend-mode: screen;
+
+        }
+
+        .blue {
+            background-color: rgb(0, 0, 255);
+            margin-top: 180px;
+        }
+
+        .red {
+            margin-left: -100px;
+            background-color: rgb(255, 0, 0);
+        }
+
+        .green {
+            margin-left: 100px;
+            background-color: rgb(0, 255, 0);
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <scene id="sc_1">
+        <div id="red" class="other_bx red">
+        </div>
+    </scene>
+    <scene id="sc_2">
+        <div id="green" class="other_bx green">
+        </div>
+    </scene>
+    <scene id="sc_3">
+        <div id="blue" class="other_bx blue">
+        </div>
+    </scene>
+
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script>
+
+
+        var ctrl = new ScrollMagic.Controller({
+            globalSceneOptions: {
+                triggerHook: 'onLeave'
+            }
+        });
+        
+        // Create scene
+        var scenes = document.getElementsByTagName("scene");
+        var sceneArray =  [...scenes];
+
+        new ScrollMagic.Scene({
+             triggerElement: scenes[0],
+           
+        })
+        .setPin(scenes[0], {pushFollowers: false})
+        .addTo(ctrl);
+
+        new ScrollMagic.Scene({
+            triggerElement: scenes[1],
+        })
+        .setPin(scenes[1], {pushFollowers: false})
+        .addTo(ctrl);
+
+        new ScrollMagic.Scene({
+            triggerElement: scenes[2],
+
+        })
+        .setPin(scenes[2], {pushFollowers: false})
+        .addTo(ctrl);
+
+
+   
+    </script>
+</body>
+
+</html>

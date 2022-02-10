@@ -11,25 +11,95 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <style>
+            body{
+                background-color: rgb(228, 228, 228);
+            }
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                
+            }
+            a,li,p{
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 3vh;
+                font-style: italic;
+                color: #000;
+            }
+            .description {
+                display:none;
+                position:absolute;
+                border:1px solid #000;
+                width:600px;
+                height:300px;
+                background-color: rgb(0, 00, 255);
+                box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.242);
+            }
+            .show{
+                display: block !important;
+            }
+        </style>
+
     </head>
     <body>
+
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <menu>
+            <p>Hier die Übungen zu diesem Semster. <br>
+                Danke Robin für den tollen Input.<br>
+            Ich fand die Einführung so gut, dass ich Processing <br>
+             für andere Kurse auch gleich verwendet hab. <br>
+            Siehe others. </p>
             <ul>
-                <li><a href="./aufgaben/01_Zeit/index.html">01 ZEIT</a></li>
-                <li><a href="./aufgaben/02_Follow Mouse/">02 Follow Mouse</a></li>
-                <li><a href="./aufgaben/03_UFOs/index.html">03 UFOs</a></li>
-                <li><a href="./aufgaben/04_Lifetime Calendar/">04 Lifetime Calendar</a></li>
-                <li><a href="./aufgaben/06_Impfunng/">06 Impfunng</a></li>
-                <li><a href="./aufgaben/08_VPI/index.html">08 VPI</a></li>
-                <li><a href="./aufgaben/10_Imagecount/">10_Imagecount</a></li>
+                <li><a href="./aufgaben/01_Zeit/index.html">01 Zeit  </a></li>
+                <!--<li><a href="./aufgaben/02_Follow Mouse/">02 Follow Mouse  </a></li>-->
+                <li><a href="./aufgaben/03_UFOs/index.html">02 UFOs  </a></li>
+                <li><a href="./aufgaben/06_Scrollytelling/">03 Scrollytelling </a></li>
+                
+                <li><br><br>others</li>
+
+
+                <li><a href="./aufgaben/04_Lifetime Calendar/">04 Lifetime Calendar </a></li>
+                <li><a href="./aufgaben/08_VPI/index.html">08 VPI </a></li>
+                <li><a href="./aufgaben/10_Imagecount/">10 Imagecount </a></li>
 
 
             </ul>
+
         </menu>
         
+        <iframe id="preview" class="description" src="./aufgaben/01_Zeit/index.html"></iframe>
         <script src="" async defer></script>
+
+        <script>
+
+            document.querySelectorAll('a').forEach(item => {
+            item.addEventListener('mouseover', event => {
+                let preview = document.getElementById('preview');
+                preview.src = item.href;
+                preview.classList.add("show");
+                
+
+            });
+            item.addEventListener('mouseleave', event => {
+                preview.classList.remove("show");
+            });
+
+            document.addEventListener('mousemove',  e => {
+                let body = document.querySelector('body');
+                let preview = document.getElementById('preview');
+                let left = e.offsetX + preview.offsetWidth/3;
+                let top = e.offsetY + preview.offsetHeight/3;
+                preview.style.left = left + 'px';
+                preview.style.top = top + 'px';
+                });
+            });
+
+
+
+            </script>
     </body>
 </html>
